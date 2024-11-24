@@ -1,0 +1,49 @@
+{
+  "$schema": "https://schema.tauri.app/config/2.0.0-rc",
+  "productName": "metaloot-tauri",
+  "version": "0.1.0",
+  "identifier": "com.metaloot.dev",
+  "build": {
+    "frontendDist": "../out",
+    "devUrl": "http://localhost:3000/",
+    "beforeDevCommand": "bun dev",
+    "beforeBuildCommand": "npm run build"
+  },
+  "app": {
+    "windows": [
+      {
+        "title": "MetaLoot",
+        "width": 1200,
+        "height": 800,
+        "resizable": true,
+        "fullscreen": false,
+        "label": "main"
+      }
+    ],
+    "security": {
+      "csp": "default-src 'self'; connect-src 'self' ipc://localhost https://rest-testnet.onflow.org https://biz-touch-7unj.shuttle.app https://pulse.walletconnect.org https://verify.walletconnect.org wss://relay.walletconnect.com blob:; img-src 'self' data: https://*.supabase.co https://tzqzzuafkobkhygtccse.supabase.co https://eiwzivmnxlmtwrzejwdl.supabase.co; script-src 'self'; style-src 'self'; frame-src 'self' https://fcl-discovery.onflow.org https://verify.walletconnect.org;"
+    }
+  },
+  "plugins": {
+    "deep-link": {
+      "mobile": [
+        { "host": "metaloot", "pathPrefix": ["/open"] }
+      ],
+      "desktop": {
+        "schemes": ["metaloot"]
+      }
+    }
+  },
+  "bundle": {
+    "active": true,
+    "targets": "all",
+    "icon": [
+      "icons/32x32.png",
+      "icons/128x128.png",
+      "icons/128x128@2x.png",
+      "icons/icon.icns",
+      "icons/icon.ico"
+    ]
+
+  }
+}

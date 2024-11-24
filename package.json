@@ -1,0 +1,39 @@
+{
+  "name": "metaloot-tauri",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start",
+    "lint": "next lint"
+  },
+  "dependencies": {
+    "@onflow/fcl": "^1.12.3",
+    "@react-three/drei": "^9.116.3",
+    "@react-three/fiber": "^8.17.10",
+    "@tauri-apps/api": "^2.1.1",
+    "@tauri-apps/plugin-deep-link": "^2.0.0",
+    "@tauri-apps/plugin-shell": "^2.0.1",
+    "@tauri-apps/plugin-websocket": "~2",
+    "@types/express": "^5.0.0",
+    "daisyui": "^4.12.14",
+    "express": "^4.21.1",
+    "next": "14.2.14",
+    "pino-pretty": "^13.0.0",
+    "react": "^18",
+    "react-dom": "^18",
+    "react-icons": "^5.3.0",
+    "websocket": "^1.0.35"
+  },
+  "devDependencies": {
+    "@types/node": "22.9.0",
+    "@types/react": "18.3.12",
+    "@types/react-dom": "^18",
+    "eslint": "^8",
+    "eslint-config-next": "14.2.14",
+    "postcss": "^8",
+    "tailwindcss": "^3.4.1",
+    "typescript": "5.6.3"
+  }
+}
