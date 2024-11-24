@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useEffect, useState } from 'react';
-import { FaUserCircle } from 'react-icons/fa';
+import { FaSignOutAlt, FaUserCircle, FaWallet } from 'react-icons/fa';
 import Link from 'next/link';
 import * as fcl from "@onflow/fcl";
 import { onOpenUrl } from '@tauri-apps/plugin-deep-link'
@@ -92,74 +92,68 @@ const Navbar = ({ updateTab, setUserAddress }) => {
     setUser({ addr: "", loggedIn: false });
   };
 
+  if (!user?.loggedIn) {
+    return (
+      <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-80 z-50">
+        <div className="flex flex-col items-center gap-6 p-8 bg-base-200 rounded-lg">
+          <FaWallet className="w-16 h-16 text-primary" />
+          <h2 className="text-2xl font-bold text-white">Connect Wallet</h2>
+          <p className="text-center text-gray-300">Please connect your Flow wallet to continue</p>
+          <button
+            onClick={handleLogin}
+            className="btn btn-primary btn-lg"
+          >
+            Connect Flow Wallet
+          </button>
+        </div>
+      </div>
+    );
+  }
+
   return (
-    <nav className="navbar bg-base-200">
+    <nav className="navbar bg-base-200 fixed bottom-0 left-0 right-0 z-50">
       {isLoading ? (
         <div className="fixed inset-0 flex items-center justify-center bg-black bg-opacity-60 z-50">
           <div className="flex flex-col items-center gap-4">
-            {/* <div className="loading loading-spinner loading-lg text-primary"></div> */}
             <div className="loading loading-ring loading-lg text-secondary"></div>
             <p className="text-lg font-semibold animate-pulse text-white">Please allow apps permission on your wallet...</p>
           </div>
         </div>
       ) : (
-        <div className="flex justify-between w-full px-4">
-          {/* First sector: Avatar and Welcome */}
-          <div className="flex items-center">
-            <div className="dropdown">
-              <label tabIndex={0} className="btn btn-ghost btn-circle">
-                {user?.loggedIn ? (
-                  <div className="avatar">
-                    <div className="w-10 rounded-full">
-                      <img src="https://tzqzzuafkobkhygtccse.supabase.co/storage/v1/object/public/biz_touch/profile_media/7294811" alt="User Avatar" />
-                    </div>
-                  </div>
-                ) : (
-                  <FaUserCircle className="text-2xl" />
-                )}
+        <div className="flex justify-evenly w-full px-4">
+          {/* Arcade Button */}
+          <button 
+            onClick={() => updateTab("Arcade")} 
+            className="flex flex-col items-center justify-center"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11 3.055A9.001 9.001 0 1020.945 13H11V3.055z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20.488 9H15V3.512A9.025 9.025 0 0120.488 9z" />
+            </svg>
+            <span className="text-xs mt-1">Arcade</span>
+          </button>
 
-              </label>
-              <ul tabIndex={0} className="menu menu-sm dropdown-content mt-3 z-[1] p-2 shadow bg-base-100 rounded-box w-52">
-                <li><a>Profile</a></li>
-                <li><a>Settings</a></li>
-                <li><a>Logout</a></li>
-              </ul>
-            </div>
-            {user?.loggedIn && (
-              <div className="ml-2">
-                <h2>Welcome, {user.addr}</h2>
-              </div>
-            )}
-          </div>
+          {/* MetaTreasures Button */}
+          <button 
+            onClick={() => updateTab("MetaTreasures")} 
+            className="flex flex-col items-center justify-center"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
+            </svg>
+            <span className="text-xs mt-1">Treasures</span>
+          </button>
 
-          {/* Second sector: Navigation Links */}
-
-          <div className="flex-none">
-            <ul className="menu menu-horizontal px-1">
-              <li><span onClick={() => updateTab("Arcade")}>Arcade</span></li>
-              <li><span onClick={() => updateTab("MetaTreasures")}>MetaTreasures</span></li>
-              <li><span onClick={() => updateTab("Swapverse")}>Swapverse</span></li>
-              {/* <li><span onClick={() => updateTab("Metanomics")}>Metanomics</span></li> */}
-              <li><span className="opacity-50 cursor-not-allowed">Metanomics</span></li>
-              {/* <li><span onClick={() => updateTab("Transactions")}>Transactions</span></li> */}
-              <li><span className="opacity-50 cursor-not-allowed">Transactions</span></li>
-              {/* <li><span onClick={() => updateTab("Shop")}>Shop</span></li> */}
-              <li><span className="opacity-50 cursor-not-allowed">Shop</span></li>
-            </ul>
-          </div>
-
-          {/* Third sector: Login/Logout */}
-          <div className="flex-none">
-            {user?.loggedIn ? (
-              <button onClick={handleLogout} className="btn btn-ghost">
-                Logout
-              </button>
-            ) : (
-              <button onClick={handleLogin} className="btn btn-ghost">
-                Login with Flow Wallet
-              </button>
-            )}
-          </div>
+          {/* Swapverse Button */}
+          <button 
+            onClick={() => updateTab("Swapverse")} 
+            className="flex flex-col items-center justify-center"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
+            </svg>
+            <span className="text-xs mt-1">Swap</span>
+          </button>
         </div>
       )}
     </nav>

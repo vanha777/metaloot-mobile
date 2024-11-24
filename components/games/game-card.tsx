@@ -2,7 +2,6 @@
 
 import { Game } from "@/components/types";
 import { open, Command } from '@tauri-apps/plugin-shell'
-import ThreeComponent from "../ai/ThreeComponent";
 
 
 const GameCard = (game: Game) => {

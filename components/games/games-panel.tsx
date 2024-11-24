@@ -45,7 +45,7 @@ export const GamesPanel = ({userAddress}) => {
   return (
     <div className="flex flex-wrap mx-2">
       {games.map((game) => (
-        <div key={game.id} className="w-full sm:w-1/3 md:w-1/3  lg:w-1/3 px-2 mb-4 ">
+        <div key={game.id} className="w-full sm:w-1/3 md:w-1/3  lg:w-1/3 px-2 mb-4 mt-6 ">
           <GameCard {...game} />
         </div>
       ))}
