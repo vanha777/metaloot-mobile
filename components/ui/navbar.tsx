@@ -135,7 +135,11 @@ const Navbar = ({ updateTab, setUserAddress,setSideBar }) => {
 
           {/* MetaTreasures Button */}
           <button 
-            onClick={() => updateTab("MetaTreasures")} 
+            onClick={() => {
+              setSideBar(null)
+              updateTab("MetaTreasures")
+
+            }} 
             className="flex flex-col items-center justify-center"
           >
             <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
@@ -158,9 +162,8 @@ const Navbar = ({ updateTab, setUserAddress,setSideBar }) => {
           {/* Redeemable Button */}
           <button 
             onClick={() => {
-              updateTab("MetaTreasures")
               setSideBar("Redeemables")
-
+              updateTab("MetaTreasures")
             }} 
             className="flex flex-col items-center justify-center"
           >

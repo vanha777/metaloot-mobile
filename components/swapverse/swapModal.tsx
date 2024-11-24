@@ -75,11 +75,11 @@ const SwapModal: React.FC<SwapModalProps> = ({ selectedItem, onClose }) => {
 
     return (
         <div className="fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center z-50">
-            <div className="bg-base-200 p-8 rounded-3xl w-[90%] h-[90%] relative">
+            <div className="bg-base-200 p-4 sm:p-8 rounded-3xl w-[95%] sm:w-[90%] h-[95%] sm:h-[90%] relative">
                 {/* Close button */}
                 <button
                     onClick={onClose}
-                    className="absolute top-4 right-4 btn btn-circle btn-ghost"
+                    className="absolute top-2 sm:top-4 right-2 sm:right-4 btn btn-circle btn-ghost"
                 >
                     ✕
                 </button>
@@ -99,16 +99,16 @@ const SwapModal: React.FC<SwapModalProps> = ({ selectedItem, onClose }) => {
                         <div className="text-center">
                             <div className="text-6xl mb-4">❌</div>
                             <h3 className="text-2xl font-bold text-error mb-2">Swap Failed</h3>
-                            {/* <p className="text-error-content">There was an error processing your swap</p> */}
                             <button onClick={onClose} className="btn btn-error mt-4">OK</button>
                         </div>
                     </div>
                 )}
 
-                <div className="flex h-full gap-4">
+                <div className="flex flex-col sm:flex-row h-full gap-4 relative">
                     {/* Left side - Swap options */}
-                    <div className={`w-[45%] overflow-y-auto pr-4 transition-transform duration-500 ${isLoading ? 'translate-x-[25%]' : ''}`}>
-                        <h2 className="text-2xl font-bold mb-4">Available for Swap</h2>
+                    <div className={`w-full sm:w-[45%] overflow-y-auto pr-0 sm:pr-4 transition-all duration-500 
+                        ${isLoading ? 'sm:translate-x-[25%] translate-y-[25%]' : ''}`}>
+                        <h2 className="text-xl sm:text-2xl font-bold mb-4">Available for Swap</h2>
                         <div className="space-y-4">
                             {items?.map((item) => {
                                 const isSelected = selectedSwapItem?.some(selected => selected.id === item.id);
@@ -140,8 +140,8 @@ const SwapModal: React.FC<SwapModalProps> = ({ selectedItem, onClose }) => {
                     </div>
 
                     {/* Middle - Swap controls */}
-                    <div className="w-[10%] flex flex-col items-center justify-center">
-                        <div className="flex flex-col gap-4">
+                    <div className="absolute left-1/2 top-1/2 -translate-x-1/2 -translate-y-1/2 z-10 sm:static sm:w-[10%] flex flex-col items-center justify-center">
+                        <div className="flex flex-col gap-4 bg-base-200 p-2 rounded-full">
                             <button
                                 className={`btn btn-primary btn-circle btn-lg ${isLoading ? 'animate-spin' : ''}`}
                                 onClick={swapItems}
@@ -149,15 +149,16 @@ const SwapModal: React.FC<SwapModalProps> = ({ selectedItem, onClose }) => {
                             >
                                 ⇄
                             </button>
-                            <span className="text-center font-bold">
+                            <span className="text-center font-bold text-sm sm:text-base">
                                 {isLoading ? 'SWAPPING...' : 'SWAP'}
                             </span>
                         </div>
                     </div>
 
                     {/* Right side - Selected item */}
-                    <div className={`w-[45%] transition-transform duration-500 ${isLoading ? '-translate-x-[25%]' : ''}`}>
-                        <h2 className="text-2xl font-bold mb-4">Your Item</h2>
+                    <div className={`w-full sm:w-[45%] transition-all duration-500 mt-4 sm:mt-0
+                        ${isLoading ? 'sm:-translate-x-[25%] -translate-y-[25%]' : ''}`}>
+                        <h2 className="text-xl sm:text-2xl font-bold mb-4">Your Item</h2>
                         <div className={`transform scale-95 transition-all duration-500 ${isLoading ? 'animate-pulse opacity-70' : ''}`}>
                             <SwapCard {...selectedItem} disableModal={true} />
                         </div>
