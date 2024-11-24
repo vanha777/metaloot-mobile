@@ -20,7 +20,7 @@ const Interface: React.FC = () => {
 
   return (
     <div className="flex flex-col min-h-screen bg-black text-white">
-      <Navbar updateTab={updateTab} setUserAddress={setUserAddress} />
+      <Navbar updateTab={updateTab} setUserAddress={setUserAddress} setSideBar={setSideBar} />
       <div className="flex flex-col md:flex-row flex-1">
       {/*}  <div className="hidden md:block md:w-1/5">
           <Sidebar tab={tab} setSideBar={setSideBar} />

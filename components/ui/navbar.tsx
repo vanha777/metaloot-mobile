@@ -13,7 +13,7 @@ import { listen } from '@tauri-apps/api/event'
 import { invoke } from '@tauri-apps/api/core';
 import WebSocket from '@tauri-apps/plugin-websocket'
 
-const Navbar = ({ updateTab, setUserAddress }) => {
+const Navbar = ({ updateTab, setUserAddress,setSideBar }) => {
   const { user, setUser } = useUser();
   // possibly don't need -> only need to send Message Back
   const [ws, setWs] = useState<WebSocket | null>(null); // Store WebSocket instance 
@@ -120,7 +120,7 @@ const Navbar = ({ updateTab, setUserAddress }) => {
           </div>
         </div>
       ) : (
-        <div className="flex justify-evenly w-full px-4">
+        <div className="flex justify-evenly w-full px-4 mb-6">
           {/* Arcade Button */}
           <button 
             onClick={() => updateTab("Arcade")} 
@@ -153,6 +153,21 @@ const Navbar = ({ updateTab, setUserAddress }) => {
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8 7h12m0 0l-4-4m4 4l-4 4m0 6H4m0 0l4 4m-4-4l4-4" />
             </svg>
             <span className="text-xs mt-1">Swap</span>
+          </button>
+
+          {/* Redeemable Button */}
+          <button 
+            onClick={() => {
+              updateTab("MetaTreasures")
+              setSideBar("Redeemables")
+
+            }} 
+            className="flex flex-col items-center justify-center"
+          >
+            <svg xmlns="http://www.w3.org/2000/svg" className="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+            </svg>
+            <span className="text-xs mt-1">Redeemable</span>
           </button>
         </div>
       )}
